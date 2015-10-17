@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>How to distrust CloudFlare Universal SSL by selecadm</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>How to distrust CloudFlare Universal SSL</h1>
+        <p>by Adm Selec</p>
+
+
+        <p class="view"><a href="https://github.com/selecadm">View My GitHub Profile</a></p>
+
+      </header>
+      <section>
+        <h3>
+        <p>Certificates for CloudFlare Universal SSL are issued from the following intermediates:</p>
+
+        <p>COMODO ECC Domain Validation Secure Server CA 2<br>
+        COMODO Domain Validation Secure Server CA 2<br>
+        GlobalSign Organization Validation CA - G2</p>
+
+        <p>The first two are believed to be used for CloudFlare Universal SSL exclusively, hence it is safe to distrust them.</p>
+
+        <p>COMODO ECC Domain Validation Secure Server CA 2<br>
+        <a href="/static/certificates/cloudflare/ComodoECCDomainValidationSecureServerCA2.crt">PEM Base64</a></p>
+
+        <p>COMODO Domain Validation Secure Server CA 2<br>
+        <a href="/static/certificates/cloudflare/ComodoDomainValidationSecureServerCA2.crt">PEM Base64</a></p>
+
+        <p>How to distrust intermediates on Windows, affecting Internet Explorer and Chromium-based browsers:<br>
+        1. Download and open the certificate<br>
+        2. "Install Certificate…"<br>
+        3. Next, "Place all certificates in the following store" -> Intermediate Certification Authorities, OK, Next, OK<br>
+        4. Run certmgr.msc<br>
+        5. Go to "Intermediate Certification Authorities"<br>
+        6. Locate the certificate, right-click, Properties<br>
+        7. "Disable all purposes for this certificate", OK<br></p>
+
+        <p>Is it possible to do the same with Firefox?<br><br>
+        Below are the bugs regarding (in)ability to distrust intermediate:<br>
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=585352">Bug 585352 - Certificate Manager misleads users into thinking that they can distrust CAs and/or intermediates</a><br>
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=642503">Bug 642503 - Generic blacklisting mechanism for bogus certs (NSS trust module)</a><br>
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=646205">Bug 646205 - Unable to mark intermediate CA certificate as untrusted</a></p>
+
+        <p>How to ensure the intermediates being distrusted?<br><br>
+        Using Internet Explorer or a Chromium-based browser, try to open sites below (as of 17 October 2015):<br>
+        <a href="https://certificate.revocationcheck.com/">https://certificate.revocationcheck.com/</a> (for testing <i>COMODO ECC Domain Validation Secure Server CA 2</i>)<br>
+        <a href="https://qwintry.com/">https://qwintry.com/</a> (for testing <i>COMODO Domain Validation Secure Server CA 2</i>)</p>
+
+        <p>Will this affect my daily internet routine?<br><br>
+        From my experience, yes. As of 17 October 2015, the sites I have encountered:<br>
+        https://certlogik.com/<br>
+        https://ssldecoder.org/<br>
+        https://unmitigatedrisk.com/<br>
+        https://habracdn.net/ (switched to <i>GlobalSign Organization Validation CA - G2</i>)<br>
+        https://certcentrehq.com/<br>
+        https://jekyllrb.com/<br>
+        https://certificate.revocationcheck.com/<br>
+        https://www.odoo.com/<br>
+        https://odoocdn.com/<br>
+        https://samsclass.info/<br>
+        https://slack.certly.io/<br>
+        https://qwintry.com/<br>
+        https://blog.certly.io/<br>
+        https://www.404techsupport.com/<br>
+        https://sheharyar.me/<br>
+        https://blog.keanulee.com/<br>
+        https://www.benburwell.com/<br>
+        https://www.opensecrets.org/<br>
+        https://hedgehogs.lv/<br>
+        https://ondrek.com/<br>
+        https://rck.ms/<br>
+        https://cantheyseemydick.com/<br>
+        https://img.4plebs.org/<br>
+        https://fud.io/<br>
+        https://cdn.englishforums.com/<br>
+        https://blog.squarelemon.com/<br>
+        https://2ip.ru/ (dropped CloudFlare)<br>
+        https://www.wireshark.org/<br>
+        https://www.expertbail.com/<br>
+        https://kyliehunt.com/<br>
+        https://avatars.discourse.org/</p>
+
+        <p>This article is going to be updated.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
